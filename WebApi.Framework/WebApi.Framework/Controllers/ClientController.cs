@@ -12,27 +12,28 @@ using WebApi.Framework.Models;
 namespace WebApi.Framework.Controllers
 {
     /// <summary>
-    /// Accounts
+    /// Client
     /// </summary>
-    public class DepartmentController : ApiController
+    public class ClientController : ApiController
     {
-        private const string CollectionId = "Department";
-
-        public DepartmentController()
+        /// <summary>
+        /// 
+        /// </summary>
+        public ClientController()
         {
-            DocumentDBRepository<Department>.Initialize("Department");
+            DocumentDBRepository<Client>.Initialize("Client");
         }
         /// <summary>
-        /// Get All Departments
+        /// Get All Clients
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [ActionName("GetAllDepartments")]
-        public async Task<HttpResponseMessage> GetAllDepartments()
+        [ActionName("GetAllClients")]
+        public async Task<HttpResponseMessage> GetAllClients()
         {
             try
             {
-                var result = await DocumentDBRepository<Department>.GetItemsAsync();
+                var result = await DocumentDBRepository<Client>.GetItemsAsync();
                 return new HttpResponseMessage
                 {
                     StatusCode = HttpStatusCode.Found,
@@ -46,17 +47,17 @@ namespace WebApi.Framework.Controllers
         }
 
         /// <summary>
-        /// Get Department by id
+        /// Get Client by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost]
-        [ActionName("GetDepartment/{id}")]
-        public async Task<HttpResponseMessage> GetDepartment(string id)
+        [ActionName("GetClient/{id}")]
+        public async Task<HttpResponseMessage> GetClient(string id)
         {
             try
             {
-                var result = await DocumentDBRepository<Department>.GetItemsAsync(d => d.DepartmentId == id);
+                var result = await DocumentDBRepository<Client>.GetItemsAsync(d => d.ClientId == id);
                 return new HttpResponseMessage
                 {
                     StatusCode = HttpStatusCode.Found,
@@ -70,19 +71,19 @@ namespace WebApi.Framework.Controllers
         }
 
         /// <summary>
-        /// Add Department
+        /// Add Client
         /// </summary>
-        /// <param name="department"></param>
+        /// <param name="client"></param>
         /// <returns></returns>
         [HttpPost]
-        [ActionName("AddDepartment")]
-        public async Task<HttpResponseMessage> AddDepartment([System.Web.Mvc.Bind(Include = "DepartmentId,DepartmentName")] Department department)
+        [ActionName("AddClient")]
+        public async Task<HttpResponseMessage> AddClient([System.Web.Mvc.Bind(Include = "ClientId,ClientName,ClientLocation")] Client client)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var result = await DocumentDBRepository<Department>.CreateItemAsync(department);
+                    var result = await DocumentDBRepository<Client>.CreateItemAsync(client);
 
                     return new HttpResponseMessage(HttpStatusCode.Created);
                 }
@@ -95,19 +96,19 @@ namespace WebApi.Framework.Controllers
         }
 
         /// <summary>
-        /// Update a Department
+        /// Update a Client
         /// </summary>
-        /// <param name="department"></param>
+        /// <param name="client"></param>
         /// <returns></returns>
         [HttpPut]
-        [ActionName("UpdateDepartment")]
-        public async Task<HttpResponseMessage> UpdateDepartment([System.Web.Mvc.Bind(Include = "DepartmentId,DepartmentName")] Department department)
+        [ActionName("UpdateClient")]
+        public async Task<HttpResponseMessage> UpdateClient([System.Web.Mvc.Bind(Include = "ClientId,ClientName,ClientLocation")] Client client)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var result = await DocumentDBRepository<Department>.UpdateItemAsync(department.DepartmentId, department);
+                    var result = await DocumentDBRepository<Client>.UpdateItemAsync(client.ClientId, client);
 
                     return new HttpResponseMessage(HttpStatusCode.OK);
                 }
@@ -121,20 +122,20 @@ namespace WebApi.Framework.Controllers
         }
 
         /// <summary>
-        /// Delete Department
+        /// Delete Client
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
-        [ActionName("DeleteDepartment/{id}")]
-        public async Task<HttpResponseMessage> DeleteDepartment(string id)
+        [ActionName("DeleteClient/{id}")]
+        public async Task<HttpResponseMessage> DeleteClient(string id)
         {
             try
             {
                 if (string.IsNullOrEmpty(id))
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);
 
-                await DocumentDBRepository<Department>.DeleteItemAsync(id);
+                await DocumentDBRepository<Client>.DeleteItemAsync(id);
 
                 return new HttpResponseMessage(HttpStatusCode.NoContent);
             }

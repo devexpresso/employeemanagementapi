@@ -491,6 +491,50 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:WebApi.Framework.Controllers.ClientController">
+            <summary>
+            Client
+            </summary>
+        </member>
+        <member name="M:WebApi.Framework.Controllers.ClientController.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WebApi.Framework.Controllers.ClientController.GetAllClients">
+            <summary>
+            Get All Clients
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Framework.Controllers.ClientController.GetClient(System.String)">
+            <summary>
+            Get Client by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Framework.Controllers.ClientController.AddClient(WebApi.Framework.Models.Client)">
+            <summary>
+            Add Client
+            </summary>
+            <param name="client"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Framework.Controllers.ClientController.UpdateClient(WebApi.Framework.Models.Client)">
+            <summary>
+            Update a Client
+            </summary>
+            <param name="client"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Framework.Controllers.ClientController.DeleteClient(System.String)">
+            <summary>
+            Delete Client
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:WebApi.Framework.Controllers.DepartmentController">
             <summary>
             Accounts
@@ -533,6 +577,11 @@
         <member name="T:WebApi.Framework.Controllers.EmployeeController">
             <summary>
             Employee
+            </summary>
+        </member>
+        <member name="M:WebApi.Framework.Controllers.EmployeeController.#ctor">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:WebApi.Framework.Controllers.EmployeeController.GetAllEmployees">
@@ -580,6 +629,11 @@
             Projects
             </summary>
         </member>
+        <member name="M:WebApi.Framework.Controllers.ProjectController.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:WebApi.Framework.Controllers.ProjectController.GetAllProjects">
             <summary>
             Get All Projects
@@ -610,6 +664,50 @@
         <member name="M:WebApi.Framework.Controllers.ProjectController.DeleteProject(System.String)">
             <summary>
             Delete Project
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebApi.Framework.Controllers.SkillController">
+            <summary>
+            Skills
+            </summary>
+        </member>
+        <member name="M:WebApi.Framework.Controllers.SkillController.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WebApi.Framework.Controllers.SkillController.GetAllSkills">
+            <summary>
+            Get All Skills
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Framework.Controllers.SkillController.GetSkill(System.String)">
+            <summary>
+            Get Skill by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Framework.Controllers.SkillController.AddSkill(WebApi.Framework.Models.Skills)">
+            <summary>
+            Add Skill
+            </summary>
+            <param name="skill"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Framework.Controllers.SkillController.UpdateSkill(WebApi.Framework.Models.Skills)">
+            <summary>
+            Update a Skill
+            </summary>
+            <param name="skill"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Framework.Controllers.SkillController.DeleteSkill(System.String)">
+            <summary>
+            Delete Skill
             </summary>
             <param name="id"></param>
             <returns></returns>

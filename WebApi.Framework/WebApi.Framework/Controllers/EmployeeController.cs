@@ -17,9 +17,12 @@ namespace WebApi.Framework.Controllers
     /// </summary>
     public class EmployeeController : ApiController
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public EmployeeController()
         {
-            DocumentDBRepository<Department>.Initialize("Employee");
+            DocumentDBRepository<Employee>.Initialize("Employee");
         }
         /// <summary>
         /// Get All Employees
@@ -31,11 +34,11 @@ namespace WebApi.Framework.Controllers
         {
             try
             {
-                var employees = await DocumentDBRepository<Employee>.GetItemsAsync();
+                var result = await DocumentDBRepository<Employee>.GetItemsAsync();
                 return new HttpResponseMessage
                 {
                     StatusCode = HttpStatusCode.Found,
-                    Content = new StringContent(JsonConvert.SerializeObject(employees), Encoding.UTF8, "application/json")
+                    Content = new StringContent(JsonConvert.SerializeObject(result), Encoding.UTF8, "application/json")
                 };
             }
             catch (Exception ex)
@@ -54,11 +57,11 @@ namespace WebApi.Framework.Controllers
         {
             try
             {
-                var employees = await DocumentDBRepository<Employee>.GetItemsAsync(d => d.Billable);
+                var result = await DocumentDBRepository<Employee>.GetItemsAsync(d => d.Billable);
                 return new HttpResponseMessage
                 {
                     StatusCode = HttpStatusCode.Found,
-                    Content = new StringContent(JsonConvert.SerializeObject(employees), Encoding.UTF8, "application/json")
+                    Content = new StringContent(JsonConvert.SerializeObject(result), Encoding.UTF8, "application/json")
                 };
             }
             catch (Exception ex)
@@ -78,11 +81,11 @@ namespace WebApi.Framework.Controllers
         {
             try
             {
-                var employees = await DocumentDBRepository<Employee>.GetItemsAsync(d => d.EmployeeId == id);
+                var result = await DocumentDBRepository<Employee>.GetItemsAsync(d => d.EmployeeId == id);
                 return new HttpResponseMessage
                 {
                     StatusCode = HttpStatusCode.Found,
-                    Content = new StringContent(JsonConvert.SerializeObject(employees), Encoding.UTF8, "application/json")
+                    Content = new StringContent(JsonConvert.SerializeObject(result), Encoding.UTF8, "application/json")
                 };
             }
             catch (Exception ex)

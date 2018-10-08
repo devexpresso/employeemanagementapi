@@ -17,9 +17,12 @@ namespace WebApi.Framework.Controllers
     /// </summary>
     public class ProjectController : ApiController
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public ProjectController()
         {
-            DocumentDBRepository<Department>.Initialize("Project");
+            DocumentDBRepository<Project>.Initialize("Project");
         }
         /// <summary>
         /// Get All Projects
@@ -31,11 +34,11 @@ namespace WebApi.Framework.Controllers
         {
             try
             {
-                var projects = await DocumentDBRepository<Project>.GetItemsAsync();
+                var result = await DocumentDBRepository<Project>.GetItemsAsync();
                 return new HttpResponseMessage
                 {
                     StatusCode = HttpStatusCode.Found,
-                    Content = new StringContent(JsonConvert.SerializeObject(projects), Encoding.UTF8, "application/json")
+                    Content = new StringContent(JsonConvert.SerializeObject(result), Encoding.UTF8, "application/json")
                 };
             }
             catch (Exception ex)
@@ -55,11 +58,11 @@ namespace WebApi.Framework.Controllers
         {
             try
             {
-                var project = await DocumentDBRepository<Project>.GetItemsAsync(d => d.Id == id);
+                var result = await DocumentDBRepository<Project>.GetItemsAsync(d => d.Id == id);
                 return new HttpResponseMessage
                 {
                     StatusCode = HttpStatusCode.Found,
-                    Content = new StringContent(JsonConvert.SerializeObject(project), Encoding.UTF8, "application/json")
+                    Content = new StringContent(JsonConvert.SerializeObject(result), Encoding.UTF8, "application/json")
                 };
             }
             catch (Exception ex)
@@ -99,7 +102,7 @@ namespace WebApi.Framework.Controllers
         /// <param name="project"></param>
         /// <returns></returns>
         [HttpPut]
-        [ActionName("UpdateEmployee")]
+        [ActionName("UpdateProject")]
         public async Task<HttpResponseMessage> UpdateProject([System.Web.Mvc.Bind(Include = "Id,ProjectName,ProjectType,Client")] Project project)
         {
             try

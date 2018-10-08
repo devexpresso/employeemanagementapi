@@ -12,27 +12,28 @@ using WebApi.Framework.Models;
 namespace WebApi.Framework.Controllers
 {
     /// <summary>
-    /// Accounts
+    /// Skills
     /// </summary>
-    public class DepartmentController : ApiController
+    public class SkillController : ApiController
     {
-        private const string CollectionId = "Department";
-
-        public DepartmentController()
+        /// <summary>
+        /// 
+        /// </summary>
+        public SkillController()
         {
-            DocumentDBRepository<Department>.Initialize("Department");
+            DocumentDBRepository<Skills>.Initialize("Skills");
         }
         /// <summary>
-        /// Get All Departments
+        /// Get All Skills
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [ActionName("GetAllDepartments")]
-        public async Task<HttpResponseMessage> GetAllDepartments()
+        [ActionName("GetAllSkills")]
+        public async Task<HttpResponseMessage> GetAllSkills()
         {
             try
             {
-                var result = await DocumentDBRepository<Department>.GetItemsAsync();
+                var result = await DocumentDBRepository<Skills>.GetItemsAsync();
                 return new HttpResponseMessage
                 {
                     StatusCode = HttpStatusCode.Found,
@@ -46,17 +47,17 @@ namespace WebApi.Framework.Controllers
         }
 
         /// <summary>
-        /// Get Department by id
+        /// Get Skill by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost]
-        [ActionName("GetDepartment/{id}")]
-        public async Task<HttpResponseMessage> GetDepartment(string id)
+        [ActionName("GetSkill/{id}")]
+        public async Task<HttpResponseMessage> GetSkill(string id)
         {
             try
             {
-                var result = await DocumentDBRepository<Department>.GetItemsAsync(d => d.DepartmentId == id);
+                var result = await DocumentDBRepository<Skills>.GetItemsAsync(d => d.SkillId == id);
                 return new HttpResponseMessage
                 {
                     StatusCode = HttpStatusCode.Found,
@@ -70,19 +71,19 @@ namespace WebApi.Framework.Controllers
         }
 
         /// <summary>
-        /// Add Department
+        /// Add Skill
         /// </summary>
-        /// <param name="department"></param>
+        /// <param name="skill"></param>
         /// <returns></returns>
         [HttpPost]
-        [ActionName("AddDepartment")]
-        public async Task<HttpResponseMessage> AddDepartment([System.Web.Mvc.Bind(Include = "DepartmentId,DepartmentName")] Department department)
+        [ActionName("AddSkill")]
+        public async Task<HttpResponseMessage> AddSkill([System.Web.Mvc.Bind(Include = "SkillId,SkillName")] Skills skill)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var result = await DocumentDBRepository<Department>.CreateItemAsync(department);
+                    var result = await DocumentDBRepository<Skills>.CreateItemAsync(skill);
 
                     return new HttpResponseMessage(HttpStatusCode.Created);
                 }
@@ -95,19 +96,19 @@ namespace WebApi.Framework.Controllers
         }
 
         /// <summary>
-        /// Update a Department
+        /// Update a Skill
         /// </summary>
-        /// <param name="department"></param>
+        /// <param name="skill"></param>
         /// <returns></returns>
         [HttpPut]
-        [ActionName("UpdateDepartment")]
-        public async Task<HttpResponseMessage> UpdateDepartment([System.Web.Mvc.Bind(Include = "DepartmentId,DepartmentName")] Department department)
+        [ActionName("UpdateSkill")]
+        public async Task<HttpResponseMessage> UpdateSkill([System.Web.Mvc.Bind(Include = "SkillId,SkillName")] Skills skill)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var result = await DocumentDBRepository<Department>.UpdateItemAsync(department.DepartmentId, department);
+                    var result = await DocumentDBRepository<Skills>.UpdateItemAsync(skill.SkillId, skill);
 
                     return new HttpResponseMessage(HttpStatusCode.OK);
                 }
@@ -121,20 +122,20 @@ namespace WebApi.Framework.Controllers
         }
 
         /// <summary>
-        /// Delete Department
+        /// Delete Skill
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
-        [ActionName("DeleteDepartment/{id}")]
-        public async Task<HttpResponseMessage> DeleteDepartment(string id)
+        [ActionName("DeleteSkill/{id}")]
+        public async Task<HttpResponseMessage> DeleteSkill(string id)
         {
             try
             {
                 if (string.IsNullOrEmpty(id))
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);
 
-                await DocumentDBRepository<Department>.DeleteItemAsync(id);
+                await DocumentDBRepository<Skills>.DeleteItemAsync(id);
 
                 return new HttpResponseMessage(HttpStatusCode.NoContent);
             }
